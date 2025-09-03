@@ -19,7 +19,7 @@
     .nav-container {
         max-width: 1200px; margin: 0 auto;
         display: flex; justify-content: space-between; align-items: center;
-        padding: 0 2rem;
+        padding: 0 1rem;
     }
     .logo {
         font-family: 'Playfair Display', serif;
@@ -28,7 +28,7 @@
     }
     .logo img { height: 50px; width: auto; object-fit: contain; }
     .nav-menu {
-        display: flex; list-style: none; gap: 2rem;
+        display: flex; list-style: none; gap: 1.5rem;
     }
     .nav-menu a {
         color: white; text-decoration: none; font-weight: 500;
@@ -40,8 +40,10 @@
         background: none; border: none; cursor: pointer;
     }
 
+    /* Mobile Menu */
     @media (max-width: 768px) {
         .hamburger { display: block; }
+        .nav-container { position: relative; }
         .nav-menu {
             position: absolute; top: 70px; right: 0;
             background: #1a1a1a;
@@ -183,8 +185,17 @@
 <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
+
+    // Toggle menu on hamburger click
     hamburger.addEventListener('click', () => {
         navMenu.classList.toggle('show');
+    });
+
+    // Close menu when a link is clicked (on mobile)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('show');
+        });
     });
 </script>
 
